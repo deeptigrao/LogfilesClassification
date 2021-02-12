@@ -1,0 +1,60 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<style>
+  .landing_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+<div class="container landing_page">
+  <div class="mt-5">
+    <form class="row" method="POST" action="{% url 'index' %}">
+      {% csrf_token %}
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="age">NAT Source Port</label>
+          <input type="number" step="1" class="form-control" id="nats" name="nats" required />
+        </div>
+
+        <div class="form-group">
+          <label for="age">NAT Destination Port</label>
+          <input type="number" step="1" class="form-control" id="natd" name="natd" required />
+        </div>
+
+        <div class="form-group">
+          <label for="age">Bytes</label>
+          <input type="number" step="1" class="form-control" id="bytes" name="bytes" required />
+        </div>
+
+        <div class="form-group">
+          <label for="age">Packets</label>
+          <input type="number" step="1" class="form-control" id="packets" name="packets" required />
+        </div>
+
+        <div class="form-group">
+          <label for="age">Elapsed Time (in seconds)</label>
+          <input type="number" step="1" class="form-control" id="elap" name="elap" required />
+        </div>
+
+      </div>
+
+      <div class="col-md-12">
+        <button type="submit" class="btn-lg btn-block btn btn-info mb-0" style="margin-top: 10px;">Check Status
+        </button>
+      </div>
+    </form>
+  </div>
+
+
+
+</div>
+
+{% if context %}
+<div class="display-6 mb-0 text-center alert alert-primary" role="alert" style="position: fixed;bottom: 0;width: 100%;">
+  <span style="font-weight: 700;">{{context}} the network request</span>
+</div>
+{% endif %}
+
+{% endblock %}
